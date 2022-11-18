@@ -1,0 +1,39 @@
+version: "3.4"
+
+services:
+
+  flux-extra:
+    image: fluxrm/flux-sched:latest
+    container_name: flux-extra
+    hostname: flux-extra
+    networks:
+      - flux_network
+    expose:
+      - "8050"
+    volumes:
+      - flux_system:/etc/flux/system/
+    tty: true
+
+  flux-psij:
+    image: flux-psij
+    build:
+      context: ..
+      dockerfile: ./docker/flux-psij.dockerfile
+    container_name: flux-psij
+    hostname: flux-psij
+    networks:
+      - flux_network
+    expose:
+      - "8050"
+    volumes:
+      - flux_system:/etc/flux/system/
+    tty: true
+
+networks:
+  flux_network:
+    name: flux_network
+
+volumes:
+  flux_system:
+    name: flux_system
+

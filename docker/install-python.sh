@@ -6,13 +6,16 @@ set -ex
 
 case "$PY_BASE_VER" in
     "3.7")
-        PY_VER="3.7.14"
+        PY_VER="3.7.16"
         ;;
     "3.8")
-        PY_VER="3.8.14"
+        PY_VER="3.8.16"
         ;;
     "3.9")
-        PY_VER="3.9.14"
+        PY_VER="3.9.16"
+        ;;
+    "3.10")
+        PY_VER="3.10.9"
         ;;
     *)
         echo "Provided version is not supported" 1>&2

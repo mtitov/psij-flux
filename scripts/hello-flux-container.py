@@ -38,7 +38,7 @@ def main():
     job.wait(timedelta(seconds=3))
 
     with open(spec.stdout_path, encoding='utf-8') as f:
-        print('\nJob output, while executing "%s": %s' %
+        print('\n> Job output, while executing "%s":\n%s' %
               (spec.executable, ''.join(f.readlines())))
 
 

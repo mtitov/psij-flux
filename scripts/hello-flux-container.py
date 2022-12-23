@@ -1,8 +1,10 @@
+#!/usr/bin/env python3
 
 import os
 import psij
 import time
 
+from datetime import timedelta
 from pathlib import Path
 
 
@@ -19,6 +21,7 @@ def main():
 
     # make job
     job = psij.Job()
+
     # job spec
     spec = psij.JobSpec()
     spec.executable = 'hostname'
@@ -28,6 +31,13 @@ def main():
     job.spec = spec
     # submit job
     jex.submit(job)
+
+    # wait for job to be done
+    job.wait(timedelta(seconds=3))
+
+    with open(spec.stdout_path, encoding='utf-8') as f:
+        print('\nJob output, while executing "%s": %s' %
+              (spec.executable, ''.join(f.readlines())))
 
 
 if __name__ == '__main__':

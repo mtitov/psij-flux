@@ -5,10 +5,10 @@ services:
   flux-psij:
     image: exaworks/flux-psij
     container_name: flux-psij
+    hostname: flux-psij
     build:
       context: ..
       dockerfile: ./docker/flux-psij.dockerfile
-    hostname: flux-psij
     environment:
       - FLUX_CONF_DIR=/etc/flux/system
     networks:

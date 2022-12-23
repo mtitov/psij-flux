@@ -1,35 +1,37 @@
-# Build docker container
+# PSI/J testing environment with Flux
+
+## Build docker container
 
 ```shell
-docker build -t flux-psij -f docker/flux-psij.dockerfile .
+./docker/build.sh
 ```
 
-# Start the execution
+## Start execution
 
 ```shell
-docker run --rm -it flux-psij bash
+docker run --rm -it exaworks/flux-psij bash
 
 flux start
-python3.7 /home/fluxuser/hello-flux-container.py
+python3.7 /home/fluxuser/workdir/hello-flux-container.py
 ```
 
-# Start the execution using `docker compose`
+## Start execution using `docker compose` (multi-broker)
 
 ```shell
 cd docker
+
 docker compose up -d
-# stop services (flux-psij and flux-extra)
+# stop containers (flux-psij and flux-sched)
 #   docker compose stop
+# remove containers
+#   docker compose rm -f
 
 docker exec -it flux-psij bash
 
 # start with 2 brokers (services in docker-compose)
-flux start -o,--config-path=/home/fluxuser,-Sbroker.quorum-timeout=2s
+flux start -o,-Sbroker.quorum-timeout=2s
 # check list of resources
-flux resource list
-
-# FIXME: flux doesn't see another host (flux-extra)
-
-python3.7 /home/fluxuser/hello-flux-container.py
+#   flux resource list
+python3.7 /home/fluxuser/workdir/hello-flux-container.py
 ```
 

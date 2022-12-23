@@ -27,8 +27,8 @@ def main():
     spec.executable = 'hostname'
     spec.arguments = []
 
-    spec.stdout_path = (os.environ.get('PSIJ_WORKDIR') or '.') + '/' + \
-        'psij.' + time.strftime('%Y-%m-%d-%H-%M-%S') + '.stdout'
+    spec.stdout_path = os.path.abspath(os.path.dirname(__file__)) + \
+        '/psij.' + time.strftime('%Y-%m-%d-%H-%M-%S') + '.stdout'
 
     job.spec = spec
     # submit job

@@ -1,4 +1,4 @@
-# PSI/J testing environment with Flux
+# Flux testing environment for PSI/J
 
 ## Build docker container
 
